@@ -25,7 +25,14 @@ public class AccountingObjectImpl implements AccountingObject {
     @Override
     public void registerEvent() {
         long now = Instant.now().truncatedTo(groupByUnit).toEpochMilli();
-        events.merge(now, 1L, (x, y) -> x + y);
+        registerEvent(now);
+    }
+
+    /**
+     * Method added for testing
+     */
+    void registerEvent(long eventTimeInMillis) {
+        events.merge(eventTimeInMillis, 1L, (x, y) -> x + y);
     }
 
     @Override
