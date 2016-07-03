@@ -3,6 +3,7 @@ package accounting;
 import java.time.Instant;
 import java.time.temporal.TemporalUnit;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static java.time.temporal.ChronoUnit.*;
@@ -13,6 +14,7 @@ public class AccountingObjectImpl implements AccountingObject {
     private final Map<Long, Long> events = new ConcurrentHashMap<>();
 
     AccountingObjectImpl(TemporalUnit groupByUnit) {
+        Objects.requireNonNull(groupByUnit);
         this.groupByUnit = groupByUnit;
     }
 
